@@ -39,6 +39,11 @@ std::vector<int> Exposer::GetListeningPorts() const {
   return server_->getListeningPorts();
 }
 
+void Exposer::AddHttpHandler(const std::string &uri, void *handler)
+{
+    server_->addHandler(uri, (CivetHandler*)handler);
+}
+
 detail::Endpoint& Exposer::GetEndpointForUri(const std::string& uri) {
   auto sameUri = [uri](const std::unique_ptr<detail::Endpoint>& endpoint) {
     return endpoint->GetURI() == uri;

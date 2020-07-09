@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+
 #include "prometheus/collectable.h"
 #include "prometheus/detail/pull_export.h"
 #include "prometheus/registry.h"
@@ -35,6 +36,7 @@ class PROMETHEUS_CPP_PULL_EXPORT Exposer {
       const std::string& uri = std::string("/metrics"));
 
   std::vector<int> GetListeningPorts() const;
+  void AddHttpHandler(const std::string &uri, void *handler);
 
  private:
   detail::Endpoint& GetEndpointForUri(const std::string& uri);
